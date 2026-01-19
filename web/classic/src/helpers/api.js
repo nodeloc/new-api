@@ -365,6 +365,16 @@ export async function onCustomOAuthClicked(provider, options = {}) {
     console.error('Failed to initiate custom OAuth:', error);
     showError('OAuth 登录失败：' + (error.message || '未知错误'));
   }
+
+export async function onNodeLocOAuthClicked(
+  nodeloc_client_id,
+  options = { shouldLogout: false },
+) {
+  const state = await prepareOAuthState(options);
+  if (!state) return;
+  window.open(
+    `https://www.nodeloc.com/oauth-provider/authorize?response_type=code&client_id=${nodeloc_client_id}&redirect_uri=${encodeURIComponent(window.location.origin + '/oauth/nodeloc')}&state=${state}&scope=openid%20profile`,
+  );
 }
 
 let channelModels = undefined;

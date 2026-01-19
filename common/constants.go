@@ -86,6 +86,7 @@ var PasswordRegisterEnabled = true
 var EmailVerificationEnabled = false
 var GitHubOAuthEnabled = false
 var LinuxDOOAuthEnabled = false
+var NodeLocOAuthEnabled = false
 var WeChatAuthEnabled = false
 var TelegramOAuthEnabled = false
 var TurnstileCheckEnabled = false
@@ -130,6 +131,9 @@ var GitHubClientSecret = ""
 var LinuxDOClientId = ""
 var LinuxDOClientSecret = ""
 var LinuxDOMinimumTrustLevel = 0
+var NodeLocClientId = ""
+var NodeLocClientSecret = ""
+var NodeLocMinimumTrustLevel = 0
 
 var WeChatServerAddress = ""
 var WeChatServerToken = ""

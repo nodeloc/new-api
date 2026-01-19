@@ -240,6 +240,15 @@ function App() {
           }
         />
         <Route
+        <Route
+          path='/oauth/nodeloc'
+          element={
+            <Suspense fallback={<Loading></Loading>} key={location.pathname}>
+              <OAuth2Callback type='nodeloc'></OAuth2Callback>
+            </Suspense>
+          }
+        />
+        <Route
           path='/oauth/:provider'
           element={
             <Suspense fallback={<Loading></Loading>} key={location.pathname}>
