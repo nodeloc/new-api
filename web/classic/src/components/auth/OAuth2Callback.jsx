@@ -51,8 +51,9 @@ const OAuth2Callback = (props) => {
       const { success, message, data } = resData;
 
       if (!success) {
-        // 业务错误不重试，直接显示错误
+        // 业务错误不重试，直接显示错误并返回
         showError(message || t('授权失败'));
+        navigate('/login');
         return;
       }
 
@@ -68,16 +69,16 @@ const OAuth2Callback = (props) => {
         navigate('/console/token');
       }
     } catch (error) {
-      // 网络错误等可重试
+      // 网络错误才重试
       if (retry < MAX_RETRIES) {
         // 递增的退避等待
         await new Promise((resolve) => setTimeout(resolve, (retry + 1) * 2000));
         return sendCode(code, state, retry + 1);
       }
 
-      // 重试次数耗尽，提示错误并返回设置页面
+      // 重试次数耗尽，提示错误并返回登录页面
       showError(error.message || t('授权失败'));
-      navigate('/console/personal');
+      navigate('/login');
     }
   };
 
